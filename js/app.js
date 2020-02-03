@@ -51,14 +51,14 @@ galleryListAction.addEventListener("click", lightboxOpen)
 
 // Подмена значения атрибута src элемента img.lightbox__image
 
-const lightboxFullImage = document.querySelector('.lightbox__image')
-lightboxFullImage.setAttribute('src', getImageFullURL())
+// const lightboxFullImage = document.querySelector('.lightbox__image')
+// lightboxFullImage.setAttribute('src', getImageFullURL())
 
 
 // Закрытие модального окна по клику на кнопку button[data-action="close-modal"].
 
 const closeButton = document.querySelector('.lightbox__button')
-console.log(closeButton)
+    // console.log(closeButton)
 
 function closeModal() {
     lightbox.classList.remove("is-open")
