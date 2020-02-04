@@ -1,8 +1,16 @@
 import galleryItems from '../gallery-items.js'
+const lightboxFullImage = document.querySelector('.lightbox__image')
+const galleryList = document.querySelector('.gallery')
+const galleryListAction = document.querySelector('.js-gallery')
+const lightbox = document.querySelector('.lightbox')
+const closeButton = document.querySelector('.lightbox__button')
+
+
+
+
 
 // Создание и рендер разметки по массиву данных и предоставленному шаблону.
 
-const galleryList = document.querySelector('.gallery')
 
 function createGallery(obj) {
     let li = document.createElement("li");
@@ -25,25 +33,28 @@ galleryList.append(...imageList)
 
 // Реализация делегирования на галерее ul.js-gallery и получение url большого изображения.
 
-const galleryListAction = document.querySelector('.js-gallery')
+let url
+let alt
 
-function getImageFullURL(event) {
+function getImageFullURL(e) {
 
-    event.preventDefault();
-    const target = event.target;
-    let url = target.dataset.source;
-    console.log(url);
-    return url
+    e.preventDefault()
+
+    url = e.target.dataset.source
+    alt = e.target.alt
+
 }
 
 galleryListAction.addEventListener("click", getImageFullURL)
 
 // Открытие модального окна по клику на элементе галереи.
 
-const lightbox = document.querySelector('.lightbox')
 
 function lightboxOpen() {
     lightbox.classList.add("is-open")
+    lightboxFullImage.setAttribute('src', url)
+    lightboxFullImage.setAttribute('alt', alt)
+
 }
 galleryListAction.addEventListener("click", lightboxOpen)
 
@@ -51,14 +62,13 @@ galleryListAction.addEventListener("click", lightboxOpen)
 
 // Подмена значения атрибута src элемента img.lightbox__image
 
-// const lightboxFullImage = document.querySelector('.lightbox__image')
+
 // lightboxFullImage.setAttribute('src', getImageFullURL())
 
 
 // Закрытие модального окна по клику на кнопку button[data-action="close-modal"].
 
-const closeButton = document.querySelector('.lightbox__button')
-    // console.log(closeButton)
+// console.log(closeButton)
 
 function closeModal() {
     lightbox.classList.remove("is-open")
